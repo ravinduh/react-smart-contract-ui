@@ -8,12 +8,13 @@ Follow following steps to run the project locallly
 4. npx hardhat clean
 5. npx hardhat compile
 6. In a new terminal execute: npx hardhat node
-7. Go back to previous terminal and run to deploy smart contract into local chain: npx hardhat run scripts/deploy.js --network localhost
+7. Go back to previous terminal and run to deploy smart contract into local chain: npx hardhat run scripts/deploy.ts --network localhost
 8. npm start
 9. Install metamask wallet as a extension https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn
 10. In the console you ran "npx hardhat node" there will be test wallets listed , pick one with the private key. Import that account to the metamask wallet
-11. Now you can enter your NRIC, connect to wallet, load and mint the NFT hosted in IPFS cloud
+11. Now you can enter your NRIC, connect to wallet, load and mint the NFT
 12. Default env varaible are set, if you need to change please rename the .env.local to .env and change accordingly
+13. If you encounter "nonce too high" error, clear the nonce data from the metamask wallet settings->advanced->clear activity tab data
 
 References
 1. https://ethereum.org/en/developers/tutorials/how-to-mint-an-nft/

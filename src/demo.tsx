@@ -151,6 +151,16 @@ export default function DemoPage(props: Props,) {
 
       console.log("Connected", accounts[0]);
     } catch (error) {
+      setState({
+        iconColor: "disabled",
+        connectedWallet: "",
+        contractSymbol: "",
+        contractAddress: "",
+        contractBaseTokenURI: "",
+        contractOwnerAddress: "",
+        contractPrice: "",
+        receipt: ""
+      });
       console.log(error);
       window.alert(error.response?.data?.error?.message)
     }
