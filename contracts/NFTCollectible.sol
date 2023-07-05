@@ -15,6 +15,8 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
 
     uint256 constant MAX_SUPPLY = 5;
     uint256 public constant PRICE = 0.01 ether;
+    uint256 public constant MAX_PER_MINT = 1;
+
 
     
     uint256 constant MINT_START = 1688428800000; // Timestamp for 04 July 2023 UTC
@@ -45,11 +47,10 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
         require(currentTime >= MINT_START, "Minting period has not started");
         require(currentTime <= MINT_END, "Minting period has ended");
 
+        require(_count >0 && _count <= MAX_PER_MINT, "Cannot mint specified number of NFTs");
+
         // Check if the wallet address and receipt has already minted an NFT
         require(!receiptUsed[msg.sender][receipt], "NFT already minted for this wallet and receipt combination");
-
-        // Mark receipt as used for the specific wallet
-        receiptUsed[msg.sender][receipt] = true;
 
         // Emit event
         emit MintNFT(msg.sender, receipt);
@@ -60,6 +61,9 @@ contract NFTCollectible is ERC721Enumerable, Ownable {
         for (uint i = 0; i < _count; i++) {
             _mintSingleNFT();
         }
+
+        // Mark receipt as used for the specific wallet
+        receiptUsed[msg.sender][receipt] = true;
     }
 
     function _mintSingleNFT() private {

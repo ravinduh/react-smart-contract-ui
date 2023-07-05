@@ -11,7 +11,6 @@ export default async function fetchData( nric: string, wallet: string) {
         const response = await axios.post(`${SMART_CONTRACT_SERVICE_API}smart-contract-service/receipt`, { data: requestData});
       return response
     } catch (error) {
-      console.error(error);
-      throw error
+      throw error;
     }
 }

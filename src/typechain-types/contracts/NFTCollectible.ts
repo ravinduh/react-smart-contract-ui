@@ -30,6 +30,7 @@ import type {
 
 export interface NFTCollectibleInterface extends utils.Interface {
   functions: {
+    "MAX_PER_MINT()": FunctionFragment;
     "PRICE()": FunctionFragment;
     "approve(address,uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
@@ -58,6 +59,7 @@ export interface NFTCollectibleInterface extends utils.Interface {
 
   getFunction(
     nameOrSignatureOrTopic:
+      | "MAX_PER_MINT"
       | "PRICE"
       | "approve"
       | "balanceOf"
@@ -84,6 +86,10 @@ export interface NFTCollectibleInterface extends utils.Interface {
       | "transferOwnership"
   ): FunctionFragment;
 
+  encodeFunctionData(
+    functionFragment: "MAX_PER_MINT",
+    values?: undefined
+  ): string;
   encodeFunctionData(functionFragment: "PRICE", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "approve",
@@ -186,6 +192,10 @@ export interface NFTCollectibleInterface extends utils.Interface {
     values: [PromiseOrValue<string>]
   ): string;
 
+  decodeFunctionResult(
+    functionFragment: "MAX_PER_MINT",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "PRICE", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
@@ -351,6 +361,8 @@ export interface NFTCollectible extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
+    MAX_PER_MINT(overrides?: CallOverrides): Promise<[BigNumber]>;
+
     PRICE(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     approve(
@@ -466,6 +478,8 @@ export interface NFTCollectible extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
   };
+
+  MAX_PER_MINT(overrides?: CallOverrides): Promise<BigNumber>;
 
   PRICE(overrides?: CallOverrides): Promise<BigNumber>;
 
@@ -583,6 +597,8 @@ export interface NFTCollectible extends BaseContract {
   ): Promise<ContractTransaction>;
 
   callStatic: {
+    MAX_PER_MINT(overrides?: CallOverrides): Promise<BigNumber>;
+
     PRICE(overrides?: CallOverrides): Promise<BigNumber>;
 
     approve(
@@ -751,6 +767,8 @@ export interface NFTCollectible extends BaseContract {
   };
 
   estimateGas: {
+    MAX_PER_MINT(overrides?: CallOverrides): Promise<BigNumber>;
+
     PRICE(overrides?: CallOverrides): Promise<BigNumber>;
 
     approve(
@@ -868,6 +886,8 @@ export interface NFTCollectible extends BaseContract {
   };
 
   populateTransaction: {
+    MAX_PER_MINT(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     PRICE(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     approve(

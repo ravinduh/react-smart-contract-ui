@@ -26,7 +26,9 @@ const ERROR_MESSAGES = [
   "Not enough NFTs left!",
   "Not enough ether to purchase NFTs",
   "Minting period has not started",
-  "Minting period has ended"
+  "Minting period has ended",
+  "Cannot mint specified number of NFTs",
+  "Nonce too high"
 ];
 
 const modalStyle = {
@@ -135,7 +137,7 @@ export default function DemoPage(props: Props,) {
         contractBaseTokenURI: baseTokenURI,
         contractOwnerAddress: ownerAddress,
         contractPrice: `${price} ETH`,
-        receipt: receiptRes.data?.data?.receipt
+        receipt: receiptRes?.data?.data?.receipt
       });
 
       setService({
@@ -190,9 +192,12 @@ export default function DemoPage(props: Props,) {
       await txn.wait();
       const balance = await contract.balanceOf(address);
       setService({...service, currentBalance: balance.toNumber(), mintAmount: 0});
+      handleClose();
+      window.alert("Mint process is done")
     } catch (error) {
       console.log(error);
-      window.alert(getCustomError(ERROR_MESSAGES, error?.message))
+      handleClose();
+      window.alert(getCustomError(ERROR_MESSAGES, error?.message));
     }
   };
 
