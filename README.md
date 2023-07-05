@@ -3,7 +3,7 @@
 Follow following steps to run the project locallly
 
 1. Clone the repo
-2. cd eact-smart-contract-ui
+2. cd react-smart-contract-ui
 3. npm install
 4. npx hardhat clean
 5. npx hardhat compile
