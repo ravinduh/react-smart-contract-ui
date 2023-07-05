@@ -10,3 +10,6 @@ Follow following steps to run the project locallly
 6. In a new terminal execute: npx hardhat node
 7. Go back to previous terminal and run: npx hardhat run scripts/deploy.js --network hardhat
 8. npm start
+9. Install metamask wallet as a extension https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn
+10. In the console you ran "npx hardhat node" there will be test wallets listed , pick one with the private key. Import that account to the metamask wallet
+11. Now you can enter your NRIC, connect to wallet, load and mint the NFT hosted in IPFS cloud
