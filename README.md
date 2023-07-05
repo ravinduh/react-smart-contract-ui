@@ -8,7 +8,7 @@ Follow following steps to run the project locallly
 4. npx hardhat clean
 5. npx hardhat compile
 6. In a new terminal execute: npx hardhat node
-7. Go back to previous terminal and run: npx hardhat run scripts/deploy.js --network localhost
+7. Go back to previous terminal and run to deploy smart contract into local chain: npx hardhat run scripts/deploy.js --network localhost
 8. npm start
 9. Install metamask wallet as a extension https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn
 10. In the console you ran "npx hardhat node" there will be test wallets listed , pick one with the private key. Import that account to the metamask wallet
