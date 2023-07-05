@@ -21,6 +21,14 @@ import fetchData from './service';
 const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS || "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 const IPFS_CLOUD_API = process.env.IPFS_CLOUD_API || "https://gateway.pinata.cloud/ipfs/";
 
+const ERROR_MESSAGES = [
+  "NFT already minted for this wallet and receipt combination",
+  "Not enough NFTs left!",
+  "Not enough ether to purchase NFTs",
+  "Minting period has not started",
+  "Minting period has ended"
+];
+
 const modalStyle = {
   position: 'absolute' as 'absolute',
   top: '50%',
@@ -146,6 +154,15 @@ export default function DemoPage(props: Props,) {
     }
   };
 
+  const getCustomError = (arr: string[], errorString: string): string => {
+    for (const str of arr) {
+      if (errorString.includes(str)) {
+        return str;
+      }
+    }
+    return errorString;
+  }
+
   const loadNFTCollection = async () => {
     try {
       console.log("load NFT collection");
@@ -175,7 +192,7 @@ export default function DemoPage(props: Props,) {
       setService({...service, currentBalance: balance.toNumber(), mintAmount: 0});
     } catch (error) {
       console.log(error);
-      window.alert(error);
+      window.alert(getCustomError(ERROR_MESSAGES, error?.message))
     }
   };
 
